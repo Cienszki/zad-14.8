@@ -5,7 +5,7 @@ var styles = {
     margin: '0.5em'
 };
 
-var Gif = React.createClass({
+Gif = React.createClass({
     getUrl: function() {
         this.props.sourceUrl || GIPHY_LOADING_URL;
     },
@@ -14,7 +14,7 @@ var Gif = React.createClass({
         return (
             <div style={styles}>
                 <a href={this.getUrl()} target='new' title='view this on giphy'>
-                    <img id='gif' src={url} style={{width: '100%', maxWidth: '350px'}}/> //czemu czasem spacja przed '/'?
+                    <img id='gif' src={url} style={{width: '100%', maxWidth: '350px'}}/>
                 </a>
             </div>
         );

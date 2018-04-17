@@ -13,7 +13,7 @@ Search = React.createClass({
     },
     handleKeyUp: function(event) {
         if (event.keyCode === 13) {
-            this.props.onSearch(this.search.searchingText);
+            this.props.onSearch(this.state.searchingText);
         }
     },
     render: function() {
@@ -23,14 +23,14 @@ Search = React.createClass({
             maxWidth: '350px'
         };
         return (
-            <form 
+            <input 
                 type="text"
                 onKeyUp={this.handleKeyUp}
                 onChange={this.handleChange} 
                 placeholder="tu wpisz "
-                styles={styles}
-                value={this.search.searchTerm}
+                style={styles}
+                value={this.state.searchTerm}
             />
         );
-    },
+    }
 });

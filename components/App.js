@@ -1,4 +1,4 @@
-var GIPHY_API_URL = 'https://api.giphy.com/';
+var GIPHY_API_URL = 'https://api.giphy.com';
 var GIPHY_PUB_KEY = 'eTKuC5iNfUJH5pMsbeFhQS9qN8KF9poS';
 App = React.createClass({
     getInitialState() {
@@ -20,7 +20,7 @@ App = React.createClass({
     },
     getGif: function(searchingText, callback) {
         var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText; // w jaki sposob dostajemy te zmienne wielkimi literami ?
-        var xhr = XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
         xhr.open('GET', url);
         xhr.onload = function() {
             if (xhr.status === 200) {
@@ -44,7 +44,7 @@ App = React.createClass({
             <div style={styles}>
                     <h1>Wyszukiwarka Gifów</h1>
                     <p>Znajdź gif na 
-                        <a href={'giphy.com'}>Giphy</a>
+                        <a href='giphy.com'>Giphy</a>
                     </p>
                     <Search onSearch={this.handleSearch}/>
                 <Gif 
