@@ -20,9 +20,33 @@ App = React.createClass({
     },
     getGif: function(searchingText, callback) {
         var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText; // w jaki sposob dostajemy te zmienne wielkimi literami ?
-        var xhr = new XMLHttpRequest();
+        function request(url) {
+            return new Promise (
+                function(resolve, reject) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.onload = function() {
+                        if (this,status === 200) {
+                            resolve(this.response);
+                        }
+                        else {
+                            reject(new Error (this.statusText));
+                        }                    
+                    };
+                    xhr.onerror = function() {
+                        reject(new Error(
+                            `XMLHttpRequest error: ${this.statustext}`));
+                        
+                    };
+                    xhr.open('GET', url);
+                    xhr.send();
+                }
+            );
+        }
+    },
+        /*
         xhr.open('GET', url);
-        xhr.onload = function() {
+        );
+       xhr.onload = function() {
             if (xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText).data;
                 var gif = {
@@ -32,8 +56,8 @@ App = React.createClass({
                 callback(gif); // Przekazujemy obiekt do funkcji callback, którą przekazaliśmy jako drugi parametr metody getGif. Co to znaczy>?
             }
         };
-        xhr.send();
-    },
+        xhr.send();*/
+  
     render: function() {
         var styles = {
             margin: '0 auto',
